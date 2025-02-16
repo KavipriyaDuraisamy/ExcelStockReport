@@ -1,62 +1,67 @@
-<div class="container-fluid mt-2" style="overflow: hidden !important;background-color:#e9ecef;">
-  <div class="d-flex justify-content-start position-relative" style="background-color: #0d6efd;border-radius: 5px;">
+<div class="container-fluid" style="overflow: hidden !important;background-color: #D3C5E5;">
+  <div class="d-flex justify-content-start position-relative" style="background: #8466c8;border-radius: 5px;">
     <h4 class="ms-2 mb-1" style="color: white;">Excel Data Management</h4>
   </div>
   <div class="row mb-2 align-items-center">
-    
-    <div class="col-12 col-lg-2 d-flex mt-2">
-      <button 
-        class="btn btn-primary d-flex align-items-center justify-content-center"  
-        [tooltip]="'Browse to Import'"
-        [ngClass]="{'w-80': fileName}" 
+    <div class="col-12 col-lg-3 d-flex mt-2">
+      <button class="btn d-flex align-items-center justify-content-center"
+        style="background-color: #387ce9e3;color: white;" [tooltip]="'Browse to Import'" [ngClass]="{'w-80': fileName}"
         (click)="fileInput.click()">
-        
-        {{ fileName === '' ? 'File Uploader' : fileName }}
+        {{ fileName == '' ? 'File Uploader' : fileName }}
         &nbsp; &nbsp;<i class="bi bi-folder2-open"></i>
       </button>
       <input type="file" #fileInput (change)="onFileChange($event)" accept=".xlsx, .xls" hidden>
     </div>
-    <div class="col-12 col-lg-5"></div>
-    <div class="col-12 col-lg-3 d-flex justify-content-end">
+    <div class="col-12 col-lg-3 d-flex align-items-start">
+      <div class="file-list w-100 mt-0" *ngIf="fileUploads.length > 0">
+        <div class="file-item d-flex align-items-center mb-0"  *ngFor="let file of fileUploads; let i = index; trackBy: trackByIndex">
+          <div class="file-info w-80 d-flex align-items-center">
+            <div class="w-100">
+              <div class="small fw-bold text-dark">
+                <i class="bi bi-file-earmark-excel"></i> &nbsp;
+                <span>{{ file.name }}</span> {{ file.size }} 
+              </div>
+              <div class="progress mt-1">
+                <div class="progress-bar" role="progressbar" [style.width.%]="file.progress"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-1"></div>
+    <div class="col-12 col-lg-3 d-flex justify-content-end mt-1">
       <div class="input-group w-100">
-        <input type="text" class="form-control" placeholder="Type to filter data" [(ngModel)]="searchTerm" (keyup.enter)="loadFilteredData()">
-        <button class="btn btn-outline-primary" (click)="loadFilteredData()"  [tooltip]="'Search'">
+        <input type="text" class="form-control" placeholder="Type to filter data" [(ngModel)]="searchTerm"
+          (keyup.enter)="loadFilteredData()">
+        <button class="btn btn-custom" (click)="loadFilteredData()" [tooltip]="'Search'">
           <i class="bi bi-search"></i>
         </button>
       </div>
     </div>
-    <div class="col-12 col-lg-2 d-flex justify-content-end">
-      <button class="btn btn-success d-flex align-items-center justify-content-center me-2"  [tooltip]="'Save'"
-        (click)="uploadData()">
+    <div class="col-12 col-lg-2 d-flex justify-content-end mt-1">
+      <button class="btn d-flex align-items-center justify-content-center me-2" [tooltip]="'Save'"
+        style="background-color:green;color:white" (click)="uploadData()">
         <i class="bi bi-floppy"></i>
       </button>
-      <button class="btn btn-danger d-flex align-items-center justify-content-center me-2" (click)="ResetTable()" [tooltip]="'Reset'" >
+      <button class="btn d-flex align-items-center justify-content-center me-2" (click)="ResetTable()"
+        style="background-color: #f14b6d;color: white;" [tooltip]="'Reset'">
         <i class="bi bi-arrow-clockwise"></i>
       </button>
-      <button class="btn btn-warning d-flex align-items-center justify-content-center"  [tooltip]="'Export to Excel'"
-        (click)="confirmExport()">
+      <button class="btn d-flex align-items-center justify-content-center" [tooltip]="'Export'"
+        style="background-color: #4e6ce5;color:white" (click)="confirmExport()">
         <i class="bi bi-file-earmark-arrow-down"></i>
       </button>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-3" style="background-color: #D3C5E5;">
     <div class="col-12">
-      <ag-grid-angular #agGrid class="ag-theme-alpine"
-        style="width: 100%; height: calc(100vh - 140px);"
-        [rowData]="rowData"
-        [columnDefs]="columnDefs"
-        [rowModelType]="rowModelType"
-        [cacheBlockSize]="cacheBlockSize"
-        [infiniteInitialRowCount]="infiniteInitialRowCount"
-        [maxBlocksInCache]="maxBlocksInCache"
-        [defaultColDef]="defaultColDef"
-        rowSelection="single"
-        [pagination]="true"
-        (gridReady)="onGridReady($event)"
-        [gridOptions]="gridOptions"
-        [rowHeight]="40"
-        [headerHeight]="45">
+      <ag-grid-angular #agGrid class="ag-theme-alpine " style="width: 100%; height: calc(100vh - 103px);"
+        [rowData]="rowData" [columnDefs]="columnDefs" [rowModelType]="rowModelType" [cacheBlockSize]="cacheBlockSize"
+        [infiniteInitialRowCount]="infiniteInitialRowCount" [maxBlocksInCache]="maxBlocksInCache"
+        [defaultColDef]="defaultColDef" rowSelection="single" [pagination]="true" (gridReady)="onGridReady($event)"
+        [gridOptions]="gridOptions" [rowHeight]="37" [headerHeight]="42">
       </ag-grid-angular>
-  </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,90 @@
+.file-uploader {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8fff4;
+    border-radius: 10px;
+    border: 2px dashed #6b996b;
+    text-align: center;
+  }
+  
+  .upload-box {
+    padding: 15px;
+    border-radius: 5px;
+    background: #ecfdf5;
+    cursor: pointer;
+  }
+  
+  .drag-area {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0f5132;
+  }
+  
+  .browse {
+    background: #e1f7e7;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #198754;
+    font-weight: bold;
+  }
+  
+  .file-list {
+    margin-top: 20px;
+  }
+  
+  .file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    padding: 2px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .file-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .file-details i {
+    color: black;
+    font-size: 12px;
+  }
+  
+  .progress-bar {
+    width: 50%;
+    height: 10px;
+    background-color: green !important;
+
+    border-radius: px;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.3s ease-in-out;
+  }
+  .progress {
+    width: 100%;
+    background-color: white; 
+    border-radius: 5px;
+    height: 10px;
+  }
+  
+  
+  .btn-custom {
+    background-color: transparent;
+    color: black;
+    border: 1px solid #8466c8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+    background-color: #8466c8;
+    color: white;
+  }
+  
+
+  
